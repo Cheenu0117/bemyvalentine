@@ -1,33 +1,35 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import listenBear from "/src/assets/cute-bear.gif";
-import musicBear from "/src/assets/music-bear.gif";
-import gift from "/src/assets/gift/gift.jpg";
 
-import comfortBear from "/src/assets/comfort-bear.gif";
-import kissBear from "/src/assets/kiss-bears.gif";
-import cookBear from "/src/assets/cook-bear.gif";
-import bearKissGif from "/src/assets/kiss-bear.gif";
-import photoBear from "/src/assets/photo-bear.gif";
-import cuteBeaRoses from "/src/assets/rose-bear.gif";
-import childGif from "/src/assets/child.gif";
+// Fix: Changed /src/assets/ to ./assets/ for all imports
+import listenBear from "./assets/cute-bear.gif";
+import musicBear from "./assets/music-bear.gif";
+import gift from "./assets/gift/gift.jpg";
 
-import leftButtonImg from "/src/assets/left-button.png";
-import rightButtonImg from "/src/assets/right-button.png";
+import comfortBear from "./assets/comfort-bear.gif";
+import kissBear from "./assets/kiss-bears.gif";
+import cookBear from "./assets/cook-bear.gif";
+import bearKissGif from "./assets/kiss-bear.gif";
+import photoBear from "./assets/photo-bear.gif";
+import cuteBeaRoses from "./assets/rose-bear.gif";
+import childGif from "./assets/child.gif";
 
-import loveYouBear from "/src/assets/love-you-bear.gif";
+import leftButtonImg from "./assets/left-button.png";
+import rightButtonImg from "./assets/right-button.png";
 
-import VisiriCover from "/src/assets/Visiri.jpg";
-import NeramCover from "/src/assets/Neram.jpg";
-import HridayamCover from "/src/assets/Hridayam.jpg";
-import AdadaAdadaCover from "/src/assets/AdadaAdada.jpg";
-import SaayndhuSaayndhuCover from "/src/assets/SaayndhuSaayndhu.jpg";
+import loveYouBear from "./assets/love-you-bear.gif";
 
-import Visiri from "/src/assets/Visiri.mp3";
-import Neram from "/src/assets/Neram.mp3";
-import Hridayam from "/src/assets/Hridayam.mp3";
-import AdadaAdada from "/src/assets/AdadaAdada.mp3";
-import SaayndhuSaayndhu from "/src/assets/SaayndhuSaayndhu.mp3";
+import VisiriCover from "./assets/Visiri.jpg";
+import NeramCover from "./assets/Neram.jpg";
+import HridayamCover from "./assets/Hridayam.jpg";
+import AdadaAdadaCover from "./assets/AdadaAdada.jpg";
+import SaayndhuSaayndhuCover from "./assets/SaayndhuSaayndhu.jpg";
+
+import Visiri from "./assets/Visiri.mp3";
+import Neram from "./assets/Neram.mp3";
+import Hridayam from "./assets/Hridayam.mp3";
+import AdadaAdada from "./assets/AdadaAdada.mp3";
+import SaayndhuSaayndhu from "./assets/SaayndhuSaayndhu.mp3";
 
 import FormPage from "./FormPage.jsx";
 import "./FormPage.css";
@@ -43,7 +45,6 @@ function App() {
   const [envelopeOpen, setEnvelopeOpen] = useState(false);
   const [giftsOpened, setGiftsOpened] = useState(new Set());
 
-  // Form data state
   const [formData, setFormData] = useState({
     receiverName: "",
     senderName: "",
@@ -53,7 +54,6 @@ function App() {
     letterPart3: "",
   });
 
-  // Media player state
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -62,7 +62,6 @@ function App() {
 
   const audioRef = useRef(null);
 
-  // URL parameter handling
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const receiver = urlParams.get("receiver");
@@ -85,7 +84,6 @@ function App() {
     }
   }, []);
 
-  // Song data for media player
   const songs = useMemo(
     () => [
       {
@@ -120,7 +118,6 @@ function App() {
         cover: AdadaAdadaCover,
         audio: AdadaAdada,
       },
-
       {
         id: 5,
         title: "Saayndhu Saayndhu",
@@ -130,37 +127,19 @@ function App() {
         audio: SaayndhuSaayndhu,
       },
     ],
-    [],
+    [VisiriCover, NeramCover, HridayamCover, AdadaAdadaCover, SaayndhuSaayndhuCover, Visiri, Neram, Hridayam, AdadaAdada, SaayndhuSaayndhu]
   );
 
   const slides = useMemo(
     () => [
-      {
-        gif: cookBear,
-        text: "I’ll cook your fav food like it’s my love language 🍳",
-      },
-      {
-        gif: comfortBear,
-        text: "Unlimited comfort and care",
-      },
-      {
-        gif: listenBear,
-        text: "I listen… like actually listen",
-      },
-      {
-        gif: kissBear,
-        text: "Unlimited hugs & kisses\n(non-negotiable 😏)",
-      },
-      {
-        gif: photoBear,
-        text: "Your personal photographer for all the cute moments 📸",
-      },
-      {
-        gif: musicBear,
-        text: "Live singing performances… just for you 🎶😉",
-      },
+      { gif: cookBear, text: "I’ll cook your fav food like it’s my love language 🍳" },
+      { gif: comfortBear, text: "Unlimited comfort and care" },
+      { gif: listenBear, text: "I listen… like actually listen" },
+      { gif: kissBear, text: "Unlimited hugs & kisses\n(non-negotiable 😏)" },
+      { gif: photoBear, text: "Your personal photographer for all the cute moments 📸" },
+      { gif: musicBear, text: "Live singing performances… just for you 🎶😉" },
     ],
-    [bearKissGif, cuteBeaRoses],
+    [cookBear, comfortBear, listenBear, kissBear, photoBear, musicBear]
   );
 
   const handleNoEnter = useCallback(() => {
@@ -200,7 +179,6 @@ function App() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   }, [slides.length]);
 
-  // Gift tracking functions
   const handleGiftClick = useCallback((giftType) => {
     setGiftsOpened((prev) => {
       const newSet = new Set(prev);
@@ -209,7 +187,7 @@ function App() {
     });
   }, []);
 
-  const allGiftsOpened = useMemo(() => giftsOpened.size === 3, [giftsOpened]);
+  const allGiftsOpened = useMemo(() => giftsOpened.size >= 2, [giftsOpened]);
 
   const handleGift1Click = useCallback(() => {
     handleGiftClick("songs");
@@ -221,15 +199,9 @@ function App() {
     setView("letter");
   }, [handleGiftClick]);
 
-  const handleGift3Click = useCallback(() => {
-    handleGiftClick("photos");
-    setView("photos");
-  }, [handleGiftClick]);
-
-  // Media player functions
   const currentSong = useMemo(
     () => songs[currentSongIndex],
-    [songs, currentSongIndex],
+    [songs, currentSongIndex]
   );
 
   const formatTime = useCallback((time) => {
@@ -293,7 +265,7 @@ function App() {
         setCurrentTime(progress * duration);
       }
     },
-    [duration],
+    [duration]
   );
 
   const handleVolumeChange = useCallback((e) => {
@@ -312,63 +284,34 @@ function App() {
           <p className="subtitle small">
             That's the best decision you've ever made ❤️😘
           </p>
-
           <div className="image-card">
             <img src={bearKissGif} alt="cute gif" loading="lazy" />
           </div>
-
           <motion.div
             className="love-text-container"
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              delay: 0.3,
-              duration: 0.8,
-              type: "spring",
-              stiffness: 200,
-            }}
+            transition={{ delay: 0.3, duration: 0.8, type: "spring", stiffness: 200 }}
           >
             <motion.h2
               className="love-text"
               animate={{
                 scale: [1, 1.1, 1],
                 rotate: [0, 5, -5, 0],
-                textShadow: [
-                  "0 0 0 rgba(255, 192, 203, 0)",
-                  "0 0 20px rgba(255, 192, 203, 0.8)",
-                  "0 0 40px rgba(255, 192, 203, 1)",
-                  "0 0 20px rgba(255, 192, 203, 0.8)",
-                  "0 0 0 rgba(255, 192, 203, 0)",
-                ],
               }}
-              transition={{
-                scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-                rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-                textShadow: {
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-              }}
+              transition={{ scale: { duration: 2, repeat: Infinity }, rotate: { duration: 4, repeat: Infinity } }}
             >
               I LOVE YOU❤️
             </motion.h2>
           </motion.div>
-
           <div style={{ height: 12 }} />
           <motion.button
             className="btn romantic-gift-btn"
             onClick={() => setView("gifts")}
-            whileHover={{
-              scale: 1.05,
-              y: -3,
-              boxShadow: "0 15px 30px rgba(255, 122, 162, 0.4)",
-            }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
-            Click here for the Valentine gifts,{" "}
-            {formData.nickname || "Rohee"}
+            Click here for the Valentine gifts, {formData.nickname || "Rohee"}
           </motion.button>
         </div>
       </div>
@@ -380,41 +323,23 @@ function App() {
       <div className="valentine-root gifts">
         <div className="card gifts-card">
           <h1 className="yay">💝 Your Valentine Gifts 💝</h1>
-
           <div className="gifts-container">
             <div className="gift-card" onClick={handleGift1Click}>
               <h3 className="gift-title">Gift 1</h3>
-              <div className="gift-image">
-                <img src={gift} alt="gift 1" loading="lazy" />
-              </div>
+              <div className="gift-image"><img src={gift} alt="gift 1" loading="lazy" /></div>
             </div>
-
             <div className="gift-card" onClick={handleGift2Click}>
               <h3 className="gift-title">Gift 2</h3>
-              <div className="gift-image">
-                <img src={gift} alt="gift 2" loading="lazy" />
-              </div>
+              <div className="gift-image"><img src={gift} alt="gift 2" loading="lazy" /></div>
             </div>
           </div>
-
-          {allGiftsOpened ? (
+          {allGiftsOpened && (
             <div className="all-gifts-opened">
-              <div className="love-you-bear-container">
-                <img src={loveYouBear} alt="love you bear" loading="lazy" />
-              </div>
-              <p className="all-gifts-text">
-                Yayyyy!! You opened all the gifts! <br />
-                LOVE YOU SO MUCH {formData.nickname || "PATOOTIEE"}!❤️
-              </p>
+              <div className="love-you-bear-container"><img src={loveYouBear} alt="love you bear" loading="lazy" /></div>
+              <p className="all-gifts-text">LOVE YOU SO MUCH {formData.nickname || "PATOOTIEE"}!❤️</p>
             </div>
-          ) : (
-            <>
-              <div style={{ height: 12 }} />
-              <button className="btn yes" onClick={() => setView("success")}>
-                Back to Love
-              </button>
-            </>
           )}
+          <button className="btn yes" onClick={() => setView("success")}>Back</button>
         </div>
       </div>
     );
@@ -425,244 +350,26 @@ function App() {
       <div className="valentine-root songs">
         <div className="card songs-card">
           <h1 className="yay">Our Love Sounds Like This!🎵</h1>
-
           <div className="media-player-container">
-            <motion.div
-              className="media-player"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              {/* Album Art Section */}
-              <div className="album-art-section">
-                <motion.div
-                  className="album-art-frame"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <div className="album-art">
-                    <img
-                      src={currentSong.cover}
-                      alt="Album Cover"
-                      loading="lazy"
-                      className="album-image"
-                    />
-                  </div>
-                </motion.div>
-
-                <div className="album-info">
-                  <h2 className="album-title">{currentSong.album}</h2>
-                  <p className="album-artist">{currentSong.artist}</p>
+            <div className="album-art-section">
+              <img src={currentSong.cover} className="album-image" alt="cover" />
+            </div>
+            <div className="media-controls">
+              <h3>{currentSong.title}</h3>
+              <div className="progress-bar-container" onClick={handleProgressClick}>
+                <div className="progress-bar">
+                  <div className="progress-fill" style={{ width: `${(currentTime / duration) * 100}%` }}></div>
                 </div>
               </div>
-
-              {/* Media Controls Section */}
-              <div className="media-controls">
-                <div className="current-song-info">
-                  <h3 className="current-title">{currentSong.title}</h3>
-                  <p className="current-artist">{currentSong.artist}</p>
-                </div>
-
-                <div className="progress-section">
-                  <div className="time-display">
-                    <span className="current-time">
-                      {formatTime(currentTime)}
-                    </span>
-                    <span className="duration">{formatTime(duration)}</span>
-                  </div>
-                  <div
-                    className="progress-bar-container"
-                    onClick={handleProgressClick}
-                  >
-                    <div className="progress-bar">
-                      <div
-                        className="progress-fill"
-                        style={{
-                          width:
-                            duration > 0
-                              ? `${(currentTime / duration) * 100}%`
-                              : "0%",
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="control-buttons">
-                  <motion.button
-                    className="control-btn"
-                    onClick={handlePrevious}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    title="Previous"
-                  >
-                    ⏪
-                  </motion.button>
-
-                  <motion.button
-                    className="play-btn-large"
-                    onClick={handlePlayPause}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    title={isPlaying ? "Pause" : "Play"}
-                  >
-                    {isPlaying ? "⏸️" : "▶️"}
-                  </motion.button>
-
-                  <motion.button
-                    className="control-btn"
-                    onClick={handleNext}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    title="Next"
-                  >
-                    ⏩
-                  </motion.button>
-                </div>
-
-                <div className="volume-section">
-                  <span className="volume-icon">
-                    {volume > 0.5 ? "🔊" : volume > 0 ? "🔉" : "🔇"}
-                  </span>
-                  <div className="volume-bar-container">
-                    <input
-                      type="range"
-                      className="volume-bar"
-                      min="0"
-                      max="1"
-                      step="0.1"
-                      value={volume}
-                      onChange={handleVolumeChange}
-                    />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Song Playlist */}
-            <div className="song-playlist">
-              <h3 className="playlist-title">Our Playlist</h3>
-              <div className="playlist-container">
-                {songs.map((song, index) => (
-                  <motion.div
-                    key={song.id}
-                    className={`playlist-item ${index === currentSongIndex ? "active" : ""}`}
-                    onClick={() => handleSongSelect(index)}
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    <div className="playlist-item-left">
-                      <div className="playlist-number">
-                        {String(index + 1).padStart(2, "0")}
-                      </div>
-                      <div className="playlist-info">
-                        <h4 className="playlist-title-text">{song.title}</h4>
-                        <p className="playlist-artist">{song.artist}</p>
-                      </div>
-                    </div>
-                    <div className="playlist-duration">{song.duration}</div>
-                  </motion.div>
-                ))}
+              <div className="control-buttons">
+                <button onClick={handlePrevious}>⏪</button>
+                <button onClick={handlePlayPause}>{isPlaying ? "⏸️" : "▶️"}</button>
+                <button onClick={handleNext}>⏩</button>
               </div>
             </div>
           </div>
-
-          {/* Hidden audio element */}
-          <audio
-            ref={audioRef}
-            src={currentSong.audio}
-            onTimeUpdate={handleTimeUpdate}
-            onLoadedMetadata={handleLoadedMetadata}
-            onEnded={handleEnded}
-            volume={volume}
-          />
-
-          <div style={{ height: 12 }} />
-          <button className="btn yes" onClick={() => setView("gifts")}>
-            Back to Gifts
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (view === "photos") {
-    return (
-      <div className="valentine-root photos">
-        <div className="card photos-card">
-          <h1 className="yay">Every Moment with You!📸</h1>
-          <div className="photos-grid">
-            <motion.div
-              className="photo-card"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="photo-frame vintage-1">
-                <img src={photoBear} alt="Memory 1" loading="lazy" />
-              </div>
-              <p className="photo-caption">Our first special moment together</p>
-            </motion.div>
-
-            <motion.div
-              className="photo-card"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="photo-frame vintage-2">
-                <img src={kissBear} alt="Memory 2" loading="lazy" />
-              </div>
-              <p className="photo-caption">When you made me smile like this</p>
-            </motion.div>
-
-            <motion.div
-              className="photo-card"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="photo-frame vintage-3">
-                <img src={musicBear} alt="Memory 3" loading="lazy" />
-              </div>
-              <p className="photo-caption">Our favorite music moments</p>
-            </motion.div>
-
-            <motion.div
-              className="photo-card"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="photo-frame vintage-4">
-                <img src={comfortBear} alt="Memory 4" loading="lazy" />
-              </div>
-              <p className="photo-caption">Your comforting presence</p>
-            </motion.div>
-
-            <motion.div
-              className="photo-card"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="photo-frame vintage-5">
-                <img src={cookBear} alt="Memory 5" loading="lazy" />
-              </div>
-              <p className="photo-caption">Cooking memories together</p>
-            </motion.div>
-
-            <motion.div
-              className="photo-card"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="photo-frame vintage-6">
-                <img src={listenBear} alt="Memory 6" loading="lazy" />
-              </div>
-              <p className="photo-caption">Our heart-to-heart talks</p>
-            </motion.div>
-          </div>
-
-          <div style={{ height: 12 }} />
-          <button className="btn yes" onClick={() => setView("gifts")}>
-            Back to Gifts
-          </button>
+          <audio ref={audioRef} src={currentSong.audio} onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleLoadedMetadata} onEnded={handleEnded} />
+          <button className="btn yes" onClick={() => setView("gifts")}>Back to Gifts</button>
         </div>
       </div>
     );
@@ -672,68 +379,19 @@ function App() {
     return (
       <div className="valentine-root letter">
         <div className="card letter-card">
-          <h1 className="yay">
-            To {formData.receiverName || "the Girl I Love"}!❤️
-          </h1>
-          <motion.div
-            className="envelope-container"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div
-              className="envelope"
-              onClick={() => setEnvelopeOpen(!envelopeOpen)}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="envelope-flap">
-                <div className="envelope-triangle"></div>
-              </div>
-              <div className="envelope-body">
-                <div className="envelope-seal">
-                  <span className="heart-symbol">❤️</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {envelopeOpen && (
-              <motion.div
-                className="letter-paper"
-                initial={{ rotateX: 90, opacity: 0 }}
-                animate={{ rotateX: 0, opacity: 1 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-              >
-                <div className="letter-content">
-                  <h2 className="letter-title">
-                    My Dearest {formData.nickname || "Patootie"},
-                  </h2>
-                  <p className="letter-text">
-                    {formData.letterPart1 ||
-                      "I fell for you in a way I never expected, and now every day feels brighter just because you're in it."}
-                  </p>
-                  <p className="letter-text">
-                    {formData.letterPart2 ||
-                      "Loving you comes so naturally. It's in your smile, your laugh, and the comfort I feel whenever I'm with you."}
-                  </p>
-                  <p className="letter-text">
-                    {formData.letterPart3 ||
-                      "You are my favorite part of every moment, and the best thing that ever happened to me."}
-                  </p>
-                  <p className="letter-signature">
-                    Forever yours,
-                    <br />
-                    {formData.senderName || "Ram"}
-                  </p>
-                </div>
-              </motion.div>
-            )}
-          </motion.div>
-
-          {envelopeOpen && <div style={{ height: 12 }} />}
-          <button className="btn yes" onClick={() => setView("gifts")}>
-            Back to Gifts
-          </button>
+          <h1>To {formData.receiverName || "the Girl I Love"}!❤️</h1>
+          <div className="envelope" onClick={() => setEnvelopeOpen(!envelopeOpen)}>
+            {envelopeOpen ? "💌 Open" : "✉️ Click to Open"}
+          </div>
+          {envelopeOpen && (
+            <div className="letter-paper">
+              <p>{formData.letterPart1}</p>
+              <p>{formData.letterPart2}</p>
+              <p>{formData.letterPart3}</p>
+              <p>Forever, {formData.senderName}</p>
+            </div>
+          )}
+          <button className="btn yes" onClick={() => setView("gifts")}>Back</button>
         </div>
       </div>
     );
@@ -741,237 +399,51 @@ function App() {
 
   if (view === "form") {
     return (
-      <FormPage
-        onSubmit={(data) => {
-          setFormData(data);
-          setView("home");
-        }}
-      />
+      <FormPage onSubmit={(data) => { setFormData(data); setView("home"); }} />
     );
   }
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        key={view}
-        className="valentine-root"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
-      >
-        <motion.div
-          className="card"
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.6, ease: "backOut" }}
-        >
-          <motion.img
-            src={cuteBeaRoses}
-            alt="cute bear"
-            className="card-image"
-            loading="lazy"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          />
-          <motion.h1
-            className="title"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            <span className="name">
-              {formData.receiverName || "PATOOTIEEE"}
-            </span>
+      <div className="valentine-root">
+        <motion.div className="card">
+          <img src={cuteBeaRoses} alt="cute bear" className="card-image" />
+          <h1 className="title">
+            <span className="name">{formData.receiverName || "PATOOTIEE"}</span>
             <span className="ask"> Will you be my Valentine?😩❤️</span>
-            <span className="hearts"> </span>
-          </motion.h1>
-
-          {/* <p className="subtitle">Choose wisely. (The "No" button is... shy.)</p> */}
-
-          <motion.div
-            className="choices"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <motion.button
-              className="btn yes"
-              onClick={() => setView("success")}
-              whileHover={{
-                scale: 1.1,
-                y: -5,
-                boxShadow: "0 12px 25px rgba(255, 122, 162, 0.4)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              YES ❤️
-            </motion.button>
-            <motion.button
-              className="btn no"
-              onMouseEnter={handleNoEnter}
-              onMouseLeave={handleNoLeave}
-              aria-label="No button"
-              whileHover={{
-                scale: 1.05,
-                y: -2,
-                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              {noLabel}
-            </motion.button>
-          </motion.div>
+          </h1>
+          <div className="choices">
+            <button className="btn yes" onClick={() => setView("success")}>YES ❤️</button>
+            <button className="btn no" onMouseEnter={handleNoEnter} onMouseLeave={handleNoLeave}>{noLabel}</button>
+          </div>
         </motion.div>
 
         {showHoverPopup && (
-          <motion.div
-            className="overlay"
-            onClick={closeHoverPopup}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <motion.div
-              className="popup"
-              onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "backOut" }}
-            >
-              <button
-                className="close-btn"
-                onClick={closeHoverPopup}
-                aria-label="Close"
-              >
-                ✕
-              </button>
-              <p className="popup-text">
-                Maybe I should explain the perks of being my Valentine… let me
-                tell you 😉
-              </p>
-              <motion.button
-                className="btn okay-btn"
-                onClick={openProsConsPopup}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                Okay
-              </motion.button>
-            </motion.div>
-          </motion.div>
+          <div className="overlay">
+            <div className="popup">
+              <p>Wait! Let me tell you why you should say yes... 😉</p>
+              <button className="btn okay-btn" onClick={openProsConsPopup}>Okay</button>
+            </div>
+          </div>
         )}
 
         {showProsConsPopup && (
-          <motion.div
-            className="overlay"
-            onClick={closeProsConsPopup}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <motion.div
-              className="pros-cons-popup"
-              onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "backOut" }}
-            >
-              <button
-                className="close-btn"
-                onClick={closeProsConsPopup}
-                aria-label="Close"
-              >
-                ✕
-              </button>
-
-              <h2 className="pros-cons-title">
-                Why You Should Choose me as Your Valentine ❤️
-              </h2>
-
-              <motion.div
-                className="cards-container"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                <motion.div
-                  className="card pros-card"
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h3 className="card-title">💖 Pros</h3>
-                  <div className="pros-list">
-                    <div className="pro-item">
-                      <img
-                        src={slides[currentSlide].gif}
-                        alt="pro"
-                        className="pro-gif"
-                        loading="lazy"
-                      />
-                      <p className="pro-text">{slides[currentSlide].text}</p>
-                    </div>
-                  </div>
-
-                  <div className="pros-nav">
-                    <motion.button
-                      className="nav-btn"
-                      onClick={prevSlide}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <img
-                        src={leftButtonImg}
-                        alt="previous"
-                        className="nav-btn-img"
-                      />
-                    </motion.button>
-                    <span className="slide-indicator">
-                      {currentSlide + 1} / {slides.length}
-                    </span>
-                    <motion.button
-                      className="nav-btn"
-                      onClick={nextSlide}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <img
-                        src={rightButtonImg}
-                        alt="next"
-                        className="nav-btn-img"
-                      />
-                    </motion.button>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="card cons-card"
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h3 className="card-title">❌ Cons</h3>
-                  <div className="cons-content">
-                    <img
-                      src={childGif}
-                      alt="child"
-                      className="cons-gif"
-                      loading="lazy"
-                    />
-                    <p className="cons-text">Nothing!!!!</p>
-                  </div>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+          <div className="overlay">
+            <div className="pros-cons-popup">
+               <h2>Why Choose Me? ❤️</h2>
+               <div className="pro-item">
+                  <img src={slides[currentSlide].gif} className="pro-gif" alt="pro" />
+                  <p>{slides[currentSlide].text}</p>
+               </div>
+               <div className="pros-nav">
+                  <button onClick={prevSlide}>PREV</button>
+                  <button onClick={nextSlide}>NEXT</button>
+               </div>
+               <button className="btn yes" onClick={closeProsConsPopup}>Close</button>
+            </div>
+          </div>
         )}
-      </motion.div>
+      </div>
     </AnimatePresence>
   );
 }
