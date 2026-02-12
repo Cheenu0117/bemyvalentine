@@ -2,7 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: "/bemyvalentine/", // 👈 REQUIRED FOR GITHUB PAGES
+  // Vercel-ku base path eppovum "/" dhaan irukanum
+  base: "/", 
 
   plugins: [react()],
 
