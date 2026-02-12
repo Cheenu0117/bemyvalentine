@@ -17,17 +17,17 @@ import rightButtonImg from "/src/assets/right-button.png";
 
 import loveYouBear from "/src/assets/love-you-bear.gif";
 
-import ghajiniCover from "/src/assets/ghajini.jpg";
-import aasaCover from "/src/assets/aasa_orave.jpg";
-import cuckooCover from "/src/assets/cuckoo.jpg";
-import katradhuTamizhCover from "/src/assets/katradhu-tamizh.jpg";
-import mundasupattiCover from "/src/assets/mundasupatti.jpg";
+import VisiriCover from "/src/assets/Visiri.jpg";
+import NeramCover from "/src/assets/Neram.jpg";
+import HridayamCover from "/src/assets/Hridayam.jpg";
+import AdadaAdadaCover from "/src/assets/Adada Adada.jpg";
+import SaayndhuSaayndhuCover from "/src/assets/Saayndhu Saayndhu.jpg";
 
-import oruMaalai from "/src/assets/Oru-Maalai.mp3";
-import agasatha from "/src/assets/Agasatha.mp3";
-import kadhalKanave from "/src/assets/Kadhal-Kanave.mp3";
-import unakagathanae from "/src/assets/Unakagathanae.mp3";
-import aasaOrave from "/src/assets/Aasa-Orave.mp3";
+import Visiri from "/src/assets/Visiri.mp3";
+import Neram from "/src/assets/Neram.mp3";
+import Hridayam from "/src/assets/Hridayam.mp3";
+import Adada Adada from "/src/assets/Adada Adada.mp3";
+import Saayndhu Saayndhu from "/src/assets/Saayndhu Saayndhu.mp3";
 
 import FormPage from "./FormPage.jsx";
 import "./FormPage.css";
@@ -90,44 +90,44 @@ function App() {
     () => [
       {
         id: 1,
-        title: "Oru Maalai",
-        duration: "3:37",
-        album: "Ghajini",
-        cover: ghajiniCover,
-        audio: oruMaalai,
+        title: "Visiri",
+        duration: "5:29",
+        album: "Ennai nokki paayum thotta",
+        cover: VisiriCover,
+        audio: Visiri,
       },
       {
         id: 2,
-        title: "Agasatha",
-        duration: "4:59",
-        album: "Cuckoo",
-        cover: cuckooCover,
-        audio: agasatha,
+        title: "Neram",
+        duration: "4:52",
+        album: "Neram",
+        cover: NeramCover,
+        audio: Neram,
       },
       {
         id: 3,
-        title: "Unakagathanae",
-        duration: "04:51",
-        album: "Katradhu Tamizh",
-        cover: katradhuTamizhCover,
-        audio: unakagathanae,
+        title: "Hridayam",
+        duration: "02:58",
+        album: "Hridayam",
+        cover: HridayamCover,
+        audio: Hridayam,
       },
       {
         id: 4,
-        title: "Aasa Orave",
-        duration: "3:45",
-        album: "Lubber Panthu",
-        cover: aasaCover,
-        audio: aasaOrave,
+        title: "Adada Adada",
+        duration: "3:47",
+        album: "Santhosh Subramaniam",
+        cover: AdadaAdadaCover,
+        audio: Adada Adada,
       },
 
       {
         id: 5,
-        title: "Kadhal Kanave",
+        title: "Saayndhu Saayndhu",
         duration: "4:08",
-        album: "Mundasupatti",
-        cover: mundasupattiCover,
-        audio: kadhalKanave,
+        album: "Neethane en ponvasantham",
+        cover: SaayndhuSaayndhuCover,
+        audio: Saayndhu Saayndhu,
       },
     ],
     [],
@@ -368,7 +368,7 @@ function App() {
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             Click here for the Valentine gifts,{" "}
-            {formData.nickname || "Patootie"}
+            {formData.nickname || "Rohee"}
           </motion.button>
         </div>
       </div>
