@@ -26,8 +26,8 @@ import SaayndhuSaayndhuCover from "/src/assets/SaayndhuSaayndhu.jpg";
 import Visiri from "/src/assets/Visiri.mp3";
 import Neram from "/src/assets/Neram.mp3";
 import Hridayam from "/src/assets/Hridayam.mp3";
-import Adada Adada from "/src/assets/AdadaAdada.mp3";
-import Saayndhu Saayndhu from "/src/assets/SaayndhuSaayndhu.mp3";
+import AdadaAdada from "/src/assets/AdadaAdada.mp3";
+import SaayndhuSaayndhu from "/src/assets/SaayndhuSaayndhu.mp3";
 
 import FormPage from "./FormPage.jsx";
 import "./FormPage.css";
