@@ -20,14 +20,14 @@ import loveYouBear from "/src/assets/love-you-bear.gif";
 import VisiriCover from "/src/assets/Visiri.jpg";
 import NeramCover from "/src/assets/Neram.jpg";
 import HridayamCover from "/src/assets/Hridayam.jpg";
-import AdadaAdadaCover from "/src/assets/Adada Adada.jpg";
-import SaayndhuSaayndhuCover from "/src/assets/Saayndhu Saayndhu.jpg";
+import AdadaAdadaCover from "/src/assets/AdadaAdada.jpg";
+import SaayndhuSaayndhuCover from "/src/assets/SaayndhuSaayndhu.jpg";
 
 import Visiri from "/src/assets/Visiri.mp3";
 import Neram from "/src/assets/Neram.mp3";
 import Hridayam from "/src/assets/Hridayam.mp3";
-import Adada Adada from "/src/assets/Adada Adada.mp3";
-import Saayndhu Saayndhu from "/src/assets/Saayndhu Saayndhu.mp3";
+import Adada Adada from "/src/assets/AdadaAdada.mp3";
+import Saayndhu Saayndhu from "/src/assets/SaayndhuSaayndhu.mp3";
 
 import FormPage from "./FormPage.jsx";
 import "./FormPage.css";
@@ -118,7 +118,7 @@ function App() {
         duration: "3:47",
         album: "Santhosh Subramaniam",
         cover: AdadaAdadaCover,
-        audio: Adada Adada,
+        audio: AdadaAdada,
       },
 
       {
@@ -127,7 +127,7 @@ function App() {
         duration: "4:08",
         album: "Neethane en ponvasantham",
         cover: SaayndhuSaayndhuCover,
-        audio: Saayndhu Saayndhu,
+        audio: SaayndhuSaayndhu,
       },
     ],
     [],
