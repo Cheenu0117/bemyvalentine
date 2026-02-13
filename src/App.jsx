@@ -68,19 +68,21 @@ function App() {
       <div className="valentine-root">
         <div className="card full-width">
           <h1 className="yay">Your Valentine Gifts 🎁</h1>
-          <div className="gifts-grid" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '15px' }}>
-            <div className="gift-card" onClick={() => setView("songs")}>
-              <img src={gift} alt="gift" />
+          <div className="gifts-grid" style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
+            {/* Gift 1 */}
+            <div className="gift-card" onClick={() => setView("songs")} style={{ cursor: 'pointer', border: '2px solid #ffb6c1', padding: '15px', borderRadius: '15px', width: '80%' }}>
+              <img src={gift} alt="gift" style={{ width: '60px' }} />
               <p>Gift 1: Our Songs 🎵</p>
             </div>
-            <div className="gift-card" onClick={() => setView("letter")}>
-              <img src={gift} alt="gift" />
+            {/* Gift 2 */}
+            <div className="gift-card" onClick={() => setView("letter")} style={{ cursor: 'pointer', border: '2px solid #ffb6c1', padding: '15px', borderRadius: '15px', width: '80%' }}>
+              <img src={gift} alt="gift" style={{ width: '60px' }} />
               <p>Gift 2: My Letter 💌</p>
             </div>
-            {/* GIFT 3 ADDED HERE */}
-            <div className="gift-card" onClick={() => setView("memories")} style={{ border: '2px solid #ff4d6d' }}>
-              <img src={gift} alt="gift" />
-              <p>Gift 3: Our Memories 📸</p>
+            {/* Gift 3 */}
+            <div className="gift-card" onClick={() => setView("memories")} style={{ cursor: 'pointer', border: '2px solid #ff4d6d', padding: '15px', borderRadius: '15px', width: '80%', backgroundColor: '#fff0f3' }}>
+              <img src={gift} alt="gift" style={{ width: '60px' }} />
+              <p style={{ fontWeight: 'bold', color: '#ff4d6d' }}>Gift 3: Our Memories 📸</p>
             </div>
           </div>
         </div>
@@ -102,12 +104,14 @@ function App() {
           <h2 className="yay">Our Playlist 🎵</h2>
           <div style={{ textAlign: 'left', marginBottom: '20px' }}>
             {songs.map((song, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', margin: '10px 0' }}>
-                <img src={song.cover} style={{ width: '40px', borderRadius: '5px', marginRight: '10px' }} />
-                <span>{song.name}</span>
-                <audio controls style={{ height: '30px', marginLeft: '10px' }}>
-                   <source src={song.file} type="audio/mpeg" />
-                </audio>
+              <div key={i} style={{ display: 'flex', alignItems: 'center', margin: '15px 0', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>
+                <img src={song.cover} style={{ width: '50px', height: '50px', borderRadius: '5px', marginRight: '15px' }} />
+                <div style={{ flex: 1 }}>
+                  <p style={{ margin: 0, fontWeight: 'bold' }}>{song.name}</p>
+                  <audio controls style={{ height: '30px', width: '100%' }}>
+                    <source src={song.file} type="audio/mpeg" />
+                  </audio>
+                </div>
               </div>
             ))}
           </div>
@@ -122,8 +126,8 @@ function App() {
       <div className="valentine-root">
         <div className="card">
           <h2 className="yay">To My Dearest... 💌</h2>
-          <p style={{ fontStyle: 'italic', lineHeight: '1.6' }}>
-            "Papa, you are the best thing that ever happened to me. Every moment with you is special. I love you! ❤️"
+          <p style={{ fontStyle: 'italic', lineHeight: '1.6', backgroundColor: '#fff5f7', padding: '15px', borderRadius: '10px' }}>
+            "Papa, you are the most special person in my life. Every single memory we share is a treasure. I love you to the moon and back! ❤️"
           </p>
           <button className="btn yes" onClick={() => setView("gifts")}>Back</button>
         </div>
@@ -136,12 +140,12 @@ function App() {
       <div className="valentine-root">
         <div className="card">
           <h2 className="yay">Our Moments ❤️</h2>
-          <div style={{ maxHeight: '450px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '15px', padding: '10px' }}>
-             <img src={Papa1} style={{ width: '100%', borderRadius: '15px' }} />
-             <img src={Papa2} style={{ width: '100%', borderRadius: '15px' }} />
-             <img src={Papa3} style={{ width: '100%', borderRadius: '15px' }} />
-             <img src={Papa4} style={{ width: '100%', borderRadius: '15px' }} />
-             <img src={Papa5} style={{ width: '100%', borderRadius: '15px' }} />
+          <div style={{ maxHeight: '450px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '20px', padding: '10px' }}>
+             <img src={Papa1} style={{ width: '100%', borderRadius: '15px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }} alt="memory" />
+             <img src={Papa2} style={{ width: '100%', borderRadius: '15px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }} alt="memory" />
+             <img src={Papa3} style={{ width: '100%', borderRadius: '15px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }} alt="memory" />
+             <img src={Papa4} style={{ width: '100%', borderRadius: '15px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }} alt="memory" />
+             <img src={Papa5} style={{ width: '100%', borderRadius: '15px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }} alt="memory" />
           </div>
           <button className="btn yes" style={{ marginTop: '20px' }} onClick={() => setView("gifts")}>Back</button>
         </div>
